@@ -1,9 +1,757 @@
-<html>
-  <head>
-    <tittle> INDEX </tittle>  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELECTRÓNICA JV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #0255db, #8b5cf6);
+      --dark-bg: linear-gradient(to right, #d4cccc, #ffffff);
+      --accent: #facc15;
+      --light-bg: #ffffff;
+      --text-color: #1f2937;
+      --soft-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--dark-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(to right, #d4cccc, #ffffff);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px #013cff;
+      z-index: 1000;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .navbar-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: linear-gradient(135deg, #0d38f5, #000000);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: #7488a5;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #3b82f6;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .cart-button {
+      position: relative;
+      padding: 0.5rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .cart-button:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ef4444;
+      color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 1rem 4rem;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Products Section */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000000;
+      margin: 2rem 0 1rem;
+    }
+
+    .products-grid {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card
     
-  </head>
-  <body>
-    <h1> INDEX </h1>
-  </body>
+      product-card, .service-card, .contact-card {
+    background: rgba(29, 49, 235, 0.603);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #000000;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 1rem;
+    }
+
+    .product-description {
+      color: #050505;
+      margin-bottom: 1rem;
+    }
+
+    /* Services Section */
+    .services-section {
+      background:linear-gradient(135deg, #0255db, #8b5cf6);
+      color: #020202;
+      padding: 4rem 0;
+    }
+
+    .services-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--light-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: #6ba749;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2rem;
+      color: #3b82f6;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 4rem 0;
+      background:linear-gradient(#a73009 #000000);
+    }
+
+    .contact-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background: #6ba749;
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #3b82f6;
+    }
+
+    /* Footer */
+    .footer {
+      background: #021938;
+      color: #fff;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p {
+      color: #dee0e4;
+      margin-bottom: 0.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      color: #e9ebee;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #1c222c;
+      color: #6e6262;
+    }
+
+    /* Botones */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+
+    .button-primary {
+      background: var(--primary-gradient);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .button-whatsapp {
+      background: linear-gradient(to right, #25d366, #128c7e);
+      color: #000;
+    }
+
+    .button-whatsapp:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    /* Modal Carrito */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .modal-content {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 28rem;
+      background: #fff;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+      animation: slideIn 0.4s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #0943b9;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+    }
+
+    .cart-item > div {
+      flex: 1;
+    }
+
+    .cart-item button {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #ff0000;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .products-grid,
+      .services-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+      .modal-content { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="logo">ELECTRÓNICA JV</div>
+      <div class="nav-links">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#productos" class="nav-link">Productos</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </div>
+      <button class="cart-button" onclick="toggleCart()">
+        🛒 <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="hero">
+    <h1>Reparación y venta de de equipos electronicos </h1>
+    <p>En ELECTRÓNICA JV , ofrecemos servicio técnico especializado en la reparación de todo tipo de equipos electrónicos. Además, contamos con una amplia variedad de productos, como equipos de sonido, amplificadores, televisores, computadoras y mucho más. ¡Confía en nuestros expertos para soluciones de calidad!
+  </section>
+
+  <!-- Products Section -->
+  <section id="productos">
+    <h2 class="section-title">Nuestros Productos</h2>
+    <div class="products-grid" id="products-grid">
+      <!-- Los productos se cargarán con JavaScript -->
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="servicios" class="services-section">
+    <h2 class="section-title">Servicios Técnicos</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📺</div>
+        <h3>Reparación de TV</h3>
+        <p>Servicio técnico especializado en televisores.</p>
+        <button class="button button-whatsapp" onclick="requestService('Reparación de TV')">Solicitar Servicio</button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Reparación de Computadores</h3>
+        <p>Mantenimiento y reparación de equipos.</p>
+        <button class="button button-whatsapp" onclick="requestService('Reparación de Computadores')">Solicitar Servicio</button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎵</div>
+        <h3>Equipos de Sonido</h3>
+        <p>Reparación de sistemas de audio.</p>
+        <button class="button button-whatsapp" onclick="requestService('Equipos de Sonido')">Solicitar Servicio</button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Electrodomésticos</h3>
+        <p>Reparación de electrodomésticos.</p>
+        <button class="button button-whatsapp" onclick="requestService('Electrodomésticos')">Solicitar Servicio</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacto" class="contact-section">
+    <h2 class="section-title">Contáctanos</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h3>Teléfono</h3>
+        <p>+57 313 762 1044</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <h3>Email</h3>
+        <p>contacto@electronicajv.com</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Dirección</h3>
+        <p>Calle 8 #8-21, SAMANÁ CALDAS</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Electrónica JV</h3>
+          <p>Expertos en reparación y venta de equipos electrónicos.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Horario de Atención</h3>
+          <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+          <p>Sábados y Domingos: 9:00 AM - 4:00 PM</p>
+        </div>
+        <div class="footer-section">
+          <h3>Síguenos</h3>
+          <div class="social-links">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="#" class="social-link">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Electrónica JV. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Carrito -->
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Carrito de Compras</h2>
+        <button class="close-button" onclick="toggleCart()">×</button>
+      </div>
+      <div id="cart-items">
+        <!-- Los items del carrito se cargarán con JavaScript -->
+      </div>
+      <div class="cart-total" style="margin-top: auto;">
+        <p>Total: <span id="cart-total">$0.00</span></p>
+        <button class="button button-whatsapp" onclick="checkout()">Comprar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Datos de productos
+    const products = [
+      {
+        id: '1',
+        name: 'AMPLIFICADOR ST 1500W AUDIO SOUND ASAMP3000',
+        price: 1200000,
+        image: 'Amplificador Audio Sound.jpg',
+        description: 'Entrada USB/SD, Radio FM, Bluetooth 3.0, Control remoto, Micrófono, Capacidad 4 cabinas 15 Pulgadas'
+      },
+      {
+        id: '2',
+        name: 'MIXER BEHRINGER X2442USB CONSOLA PASIVA 16 CANALES',
+        price: 2000000,
+        image: 'consola.jpg',
+        description: 'Mezclador de 16 canales con interfaz USB, Procesador de efectos integrado de 24 bits, Ecualizadores de estilo "británico"'
+      },
+      {
+        id: '3',
+        name: 'AK-450URB AMPLIFICADOR STEREO AUDIO SOUND',
+        price: 750000,
+        image: 'audiosound.jpg',
+        description: 'Entrada USB/SD, Radio FM, Bluetooth 3.0, Control remoto, Soporte para equipo tipo teatro'
+      },
+      {
+        id: '4',
+        name: 'CABINA DE SONIDO ACTIVA 15 PULGADAS',
+        price: 900000,
+        image: 'CabinaActiva.jpg',
+        description: 'Parlante 15 Pulgadas, Entrada USB/SD, Radio FM, Bluetooth 3.0, Control remoto, Micrófono, Voltaje: 120-230V (NO recargable)'
+      },
+      {
+        id: '5',
+        name: 'AMPLIFICADOR 50W',
+        price: 500000,
+        image: 'amplificador.jpg',
+        description: 'Entrada USB/SD, Radio FM, Bluetooth 3.0, Control remoto, Soporte para equipo tipo teatro'
+      },
+      {
+        id: '6',
+        name: 'ANTENA AEREA TDT',
+        price: 60000,
+        image: 'tdt.jpg',
+        description: 'Ganancia 6-10 dBi, Incluye cable (10 metros)'
+      }
+    ];
+
+    let cartItems = [];
+
+    // Renderizar productos
+    function renderProducts() {
+      const productsGrid = document.getElementById('products-grid');
+      productsGrid.innerHTML = products.map(product => `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-description">${product.description}</p>
+            <p class="product-price">$${product.price.toLocaleString()}</p>
+            <button class="button button-primary" onclick="addToCart('${product.id}')">Añadir al carrito</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Funciones del carrito
+    function toggleCart() {
+      const modal = document.getElementById('cart-modal');
+      if(modal.classList.contains('show')) {
+        modal.classList.remove('show');
+      } else {
+        modal.classList.add('show');
+      }
+      renderCart();
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const existingItem = cartItems.find(item => item.id === productId);
+
+      if(existingItem) {
+        existingItem.quantity++;
+      } else {
+        cartItems.push({ ...product, quantity: 1 });
+      }
+
+      updateCartCount();
+      renderCart();
+    }
+
+    function updateCartCount() {
+      const count = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+      document.getElementById('cart-count').textContent = count;
+    }
+
+    function renderCart() {
+      const cartContainer = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+
+      if(cartItems.length === 0) {
+        cartContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+        cartTotal.textContent = '$0.00';
+        return;
+      }
+
+      cartContainer.innerHTML = cartItems.map(item => `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <h3>${item.name}</h3>
+            <p>$${item.price.toLocaleString()} x ${item.quantity}</p>
+            <div>
+              <button onclick="updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+              <span style="margin: 0 8px;">${item.quantity}</span>
+              <button onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+            </div>
+          </div>
+          <button onclick="removeFromCart('${item.id}')">×</button>
+        </div>
+      `).join('');
+
+      const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      cartTotal.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function updateQuantity(id, quantity) {
+      if(quantity <= 0) {
+        cartItems = cartItems.filter(item => item.id !== id);
+      } else {
+        const item = cartItems.find(item => item.id === id);
+        if(item) { item.quantity = quantity; }
+      }
+      updateCartCount();
+      renderCart();
+    }
+
+    function removeFromCart(id) {
+      cartItems = cartItems.filter(item => item.id !== id);
+      updateCartCount();
+      renderCart();
+    }
+
+    function checkout() {
+      if(cartItems.length === 0) return;
+      const message = cartItems.map(item => `${item.quantity}x ${item.name} ($${item.price.toLocaleString()})`).join('\n');
+      const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      const whatsappMessage = `Hola! Me gustaría comprar:\n${message}\n\nTotal: $${total.toFixed(2)}`;
+      window.open(`https://wa.me/573137621044?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    }
+
+    function requestService(service) {
+      const message = `Hola, me gustaría información sobre el servicio de ${service}`;
+      window.open(`https://wa.me/573137621044?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    renderProducts();
+    updateCartCount();
+
+    // Cerrar el carrito al hacer clic fuera del modal
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('cart-modal');
+      if(e.target === modal) {
+        toggleCart();
+      }
+    });
+
+    // Smooth scrolling para los enlaces de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
 </html>
